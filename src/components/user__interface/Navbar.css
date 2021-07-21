@@ -1,0 +1,35 @@
+/* In order to eleminate white space from the Top of The Page */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  max-height: 2.6rem;
+
+  background-color: rgb(17, 17, 17);
+
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 10px 2.9rem;
+}
+
+.navbar__profile {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__profile > h6 {
+  color: white;
+  margin-left: 15px;
+}

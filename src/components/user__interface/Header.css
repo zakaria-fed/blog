@@ -1,0 +1,31 @@
+.header {
+  margin-top: 0;
+  height: 35rem;
+
+  background-color: aqua;
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+  background-image: url("https://images.pexels.com/photos/1114690/pexels-photo-1114690.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.63);
+}
+
+.header__content {
+  text-align: center;
+  color: #fff;
+}
+
+.header__content > h1 {
+    line-height: 34px;
+}
+
+.header__content h1 > span {
+    color: rgb(243, 145, 33);
+}
