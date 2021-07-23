@@ -1,10 +1,28 @@
+import { Button } from "@material-ui/core";
 import React from "react";
 
-const ArticleCard: React.FC<{ title: string; para: string }> = ({
-  title,
-  para,
-}) => {
-  return <div>{title} How</div>;
+interface ArticleCardInter {
+  title: string;
+  para: string;
+  image: string;
+}
+
+const ArticleCard: React.FC<ArticleCardInter> = ({ title, para, image }) => {
+  return (
+    <div className="articleCard">
+      <div
+        className="articleCard__image"
+        style={{ backgroundImage: image }}
+      ></div>
+      <div className="articleCard__content">
+        <h6>{title}</h6>
+        <p>{para}</p>
+        <div className="articleCard__button">
+          <Button>Learn More</Button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ArticleCard;

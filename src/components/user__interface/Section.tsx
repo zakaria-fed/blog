@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
+import "./Section.css";
 
-const Section: React.FC<{ title: string; articles: object }> = ({
+interface interfaceArticles {
+  title: string;
+  para: string;
+  image: string;
+}
+
+const Section: React.FC<{ title: string; articles: interfaceArticles[] }> = ({
   title,
   articles,
 }) => {
-  const [articlesData, setArticlesData] = useState([{}]);
-
-  const renderArticlesCard = () => {
-    setArticlesData((prev: any) => [...prev, articles]);
+  const renderArticles = () => {
+    return articles.map((article) => {
+      return (
+        <ArticleCard
+          image={article.image}
+          title={article.title}
+          para={article.para}
+        />
+      );
+    });
   };
-
-  useEffect(() => {
-    renderArticlesCard();
-    return () => renderArticlesCard();
-  }, []);
 
   return (
     <div className="section">
@@ -24,13 +32,7 @@ const Section: React.FC<{ title: string; articles: object }> = ({
           <h4>{title}</h4>
         </div>
         {/* Fetch Articles data from Firebase */}
-        <div className="section__articles">
-          {articlesData.length > 1 ? articlesData.map((article: any) => {
-            if (article.hasOwnProperty("title")) {
-              return <ArticleCard title={article.title} para={article.para} />;
-            }
-          }) : ""}
-        </div>
+        <div className="section__articles">{renderArticles()}</div>
       </div>
     </div>
   );
