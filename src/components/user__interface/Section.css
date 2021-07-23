@@ -24,7 +24,7 @@
 }
 
 .section__title > h4 {
-  font-family: 'Samsung Sans';
+  font-family: "Samsung Sans";
 }
 
 .section__articles {
@@ -35,9 +35,21 @@
   justify-content: space-between;
 }
 
-@media screen and (max-width: 1342px) {
+@media screen and (max-width: 1342px) and (min-width: 978px) {
   .section__articles {
     display: grid;
-    grid-template: 22rem / 52rem;
+    grid-template: auto / 24rem 24rem;
+    row-gap: 60px;
+    column-gap: 40px;
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 978px) {
+  .section__articles {
+    display: grid;
+    grid-template: auto / 24rem;
+    row-gap: 60px;
+    width: 70%;
   }
 }

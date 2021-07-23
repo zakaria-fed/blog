@@ -9,6 +9,7 @@ interface data {
 }
 
 const Navbar: React.FC<data> = ({ image, username }) => {
+
   return (
     <div className="navbar">
       <div className="navbar__logo">

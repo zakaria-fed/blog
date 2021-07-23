@@ -1,0 +1,36 @@
+.article {
+  margin: 2rem auto;
+  display: flex;
+  column-gap: 40px;
+  max-width: 80%;
+
+  justify-content: center;
+  justify-items: center;
+}
+
+.article__image {
+  width: 100%;
+  object-fit: cover;
+  flex: 60%;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 20px;
+}
+
+.article__content {
+  flex: 40%;
+}
+
+.article__content > h1 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  margin-bottom: 1.3rem;
+}
+
+.article__content > p {
+  color: rgb(109, 109, 109);
+  font-family: Tahoma;
+  line-height: 25px;
+}
