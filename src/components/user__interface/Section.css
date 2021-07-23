@@ -34,3 +34,10 @@
   justify-items: center;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 1342px) {
+  .section__articles {
+    display: grid;
+    grid-template: 22rem / 52rem;
+  }
+}
