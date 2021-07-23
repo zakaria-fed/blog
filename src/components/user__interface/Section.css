@@ -1,4 +1,6 @@
 .section {
+  margin-bottom: 5rem;
+
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -17,7 +19,18 @@
   padding: 0 0 0 1.4rem;
 }
 
+.section__title {
+  margin-bottom: 1.3rem;
+}
+
 .section__title > h4 {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 600;
+  font-family: 'Samsung Sans';
+}
+
+.section__articles {
+  width: 81rem;
+  display: flex;
+  flex: 30%;
+  justify-items: center;
+  justify-content: space-between;
 }

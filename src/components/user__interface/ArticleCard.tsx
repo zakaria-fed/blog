@@ -1,6 +1,8 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 
+import "./ArticleCard.css"
+
 interface ArticleCardInter {
   title: string;
   para: string;
@@ -12,7 +14,7 @@ const ArticleCard: React.FC<ArticleCardInter> = ({ title, para, image }) => {
     <div className="articleCard">
       <div
         className="articleCard__image"
-        style={{ backgroundImage: image }}
+        style={{backgroundImage: `url(${image})`}}
       ></div>
       <div className="articleCard__content">
         <h6>{title}</h6>
