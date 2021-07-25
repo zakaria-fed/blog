@@ -6,23 +6,30 @@ interface interfaceArticles {
   title: string;
   para: string;
   image: string;
+  category: string;
 }
 
 const Section: React.FC<{ title: string; articles: interfaceArticles[] }> = ({
   title,
   articles,
 }) => {
+  const [articlesFinal, setArticlesFinal] = useState<interfaceArticles[]>([]);
+
   const renderArticles = () => {
-    return articles.map((article) => {
-      return (
-        <ArticleCard
-          image={article.image}
-          title={article.title}
-          para={article.para}
-        />
-      );
+    // Take the Category and lower its case
+    let finalCategory = title.toLowerCase();
+    // => For every object, we're gonna check wether the category === title
+    articles.forEach((article) => {
+      //   => If yes => Store it in a state
+      if (finalCategory === article.category) {
+        setArticlesFinal((prev: any) => [...prev, article]);
+      }
     });
   };
+
+  useEffect(() => {
+    renderArticles();
+  }, []);
 
   return (
     <div className="section">
@@ -32,7 +39,17 @@ const Section: React.FC<{ title: string; articles: interfaceArticles[] }> = ({
           <h4>{title}</h4>
         </div>
         {/* Fetch Articles data from Firebase */}
-        <div className="section__articles">{renderArticles()}</div>
+        <div className="section__articles">
+          {articlesFinal.length > 0 &&
+            articlesFinal.map((article) => (
+              <ArticleCard
+                key={Math.random()}
+                title={article.title}
+                para={article.para}
+                image={article.image}
+              />
+            ))}
+        </div>
       </div>
     </div>
   );

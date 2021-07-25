@@ -3,7 +3,7 @@ import Header from "./Header";
 import Navbar from "./Navbar";
 import Section from "./Section";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import "./Main.css";
 import Footer from "./Footer";
@@ -42,17 +42,13 @@ const FullWebsite: React.FC = () => {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/" component={Home} exact />
+        <Route path="/articles" component={Home} exact />
         <Route path="/articles/:articleName">
           <Navbar
             image="https://images.pexels.com/photos/4868826/pexels-photo-4868826.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
             username="Zakaria"
           />
-          <Article
-            title="How to Rise Childen"
-            para="Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias ullam quasi beatae dignissimos, officiis eaque, at laborum mollitia voluptate facilis pariatur eum omnis nostrum non ducimus explicabo. Doloribus, fugit culpa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias ullam quasi beatae dignissimos, officiis eaque, at laborum mollitia voluptate facilis pariatur eum omnis nostrum non ducimus explicabo. Doloribus, fugit culpa."
-            image="https://images.pexels.com/photos/4226100/pexels-photo-4226100.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          />
-
+          <Article /> 
           {/* Footer */}
           <Footer />
         </Route>
