@@ -24,7 +24,7 @@ const ArticleCard: React.FC<ArticleCardInter> = ({ title, para, image }) => {
         <p>{para}</p>
         <div className="articleCard__button">
           <Link to={`articles/${cusTitle}`}>
-            <Button className="learnMore">Learn More</Button>
+            <Button className="learnMore">Read More</Button>
           </Link>
         </div>
       </div>

@@ -2,17 +2,17 @@ import React from "react"
 import "./Comment.css"
 
 interface commInter {
-  ayoub: string;
+  comment: string;
 }
 
-const Comment:React.FC<commInter> = ({ayoub}) => {
+const Comment:React.FC<commInter> = ({comment}) => {
   return (
     <div className="dialogbox">
       <div className="body">
         <span className="tip tip-left"></span>
         <div className="message">
           <span>
-            {ayoub}
+            {comment}
           </span>
         </div>
       </div>
