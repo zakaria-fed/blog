@@ -21,10 +21,13 @@
 
 .section__title {
   margin-bottom: 1.3rem;
+  color: #000;
 }
 
 .section__title > h4 {
-  font-family: "Samsung Sans";
+  font-size: larger;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: 3px underline #000;
 }
 
 .section__articles {

@@ -15,29 +15,22 @@ export interface articleInter {
 }
 
 const Home: React.FC = () => {
-  const [searchText, setSearchText] = useState("");
   const [articles, setArticles] = useState<articleInter[]>([]);
+
+  const [selectCategory, setSelectCategory] = useState<string | undefined>();
+  const [categories, setCategories] = useState<any[]>([]);
 
   // For the Firestore to fetch Articles themselves Data
   useEffect(() => {
     db.collection("articles")
       .orderBy("category", "asc")
       .get()
-      .then((snap: any) =>
-        snap.docs.forEach((doc: any) =>
-          setArticles((prev: articleInter[]) => [...prev, doc.data()])
-        )
-      );
+      .then((snap: any) => {
+        snap.docs.forEach((doc: any) => {
+          setArticles((prev: articleInter[]) => [...prev, doc.data()]);
+        });
+      });
   }, []);
-
-  // Sort Articles :
-  const sortArticles = (articles: articleInter[]) => {
-    for (let i = 0; i < articles.length; i++) {
-      if ((i = 0)) {
-        let cat = articles[0].category;
-      }
-    }
-  };
 
   return (
     <div className="fullWebsite">
@@ -57,10 +50,15 @@ const Home: React.FC = () => {
             onChange={(e: any) => setSearchText(e.target.value)}
           />
         </form> */}
+        <select placeholder="Select a Category" value={selectCategory}>
+          {}
+          {/* // I need to get number of articles in the Hole
+          // Push each category of an article into a state (categories)
+          // Upon the last state ==> I render the Options */}
+        </select>
         {articles.length > 0 && (
           <Section
             key={Math.random()}
-            title={articles[0].category}
             articles={articles}
           />
         )}

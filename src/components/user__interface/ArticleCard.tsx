@@ -8,9 +8,10 @@ interface ArticleCardInter {
   title: string;
   para: string;
   image: string;
+  category: string;
 }
 
-const ArticleCard: React.FC<ArticleCardInter> = ({ title, para, image }) => {
+const ArticleCard: React.FC<ArticleCardInter> = ({ title, para, image, category }) => {
   let cusTitle = title.toLowerCase();
 
   return (
@@ -23,6 +24,7 @@ const ArticleCard: React.FC<ArticleCardInter> = ({ title, para, image }) => {
         <h6>{title}</h6>
         <p>{para}</p>
         <div className="articleCard__button">
+          <h6>Category: {category}</h6>
           <Link to={`articles/${cusTitle}`}>
             <Button className="learnMore">Read More</Button>
           </Link>
