@@ -35,3 +35,16 @@
   color: white;
   margin-left: 15px;
 }
+
+.navbar__logo {
+  margin-right: auto;
+  margin-left: auto;
+  
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo > h4 {
+  color: #fff;
+  margin-right: 40px;
+}

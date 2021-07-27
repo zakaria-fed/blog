@@ -1,23 +1,17 @@
 import { Avatar } from "@material-ui/core";
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./Navbar.css";
 
-interface data {
-  image: string;
-  username: string;
-}
-
-const Navbar: React.FC<data> = ({ image, username }) => {
-
+const Navbar: React.FC = (): JSX.Element => {
   return (
     <div className="navbar">
       <div className="navbar__logo">
-        <Avatar src="https://images.pexels.com/photos/8704780/pexels-photo-8704780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
-      </div>
-      <div className="navbar__profile">
-        <Avatar src={image} alt={username} />
-        <h6>User__name</h6>
+        <h4>Blog App Made with REACT Library</h4>
+        <Link to="/">
+          <Avatar src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png" />
+        </Link>
       </div>
     </div>
   );

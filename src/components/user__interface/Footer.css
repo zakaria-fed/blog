@@ -4,7 +4,7 @@ iframe {
 }
 
 footer {
-  width: 100%;
+  /* width: 100%; */
   height: 40rem;
   background-color: #ec8d1d;
 
@@ -21,13 +21,15 @@ footer {
 }
 
 .footer__contact {
-  width: 24rem;
+  max-width: 20rem;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
 .footer__contact > h6 {
+  margin-bottom: 20px;
   font-weight: 500;
   font-size: 20px;
 }

@@ -1,19 +1,22 @@
 import { Button, Input } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../../firebase";
 import "./Article.css";
 import Comment from "./Comment";
 
-const Article: React.FC = () => {
+const Article = () => {
   const { articleName } = useParams<{ articleName?: string }>();
   let articleNameFromUser = articleName?.trim().toLocaleLowerCase();
 
   const [articleId, setArticleId] = useState<string>();
+  const [commentStatus, setCommentStatus] = useState(false);
 
   const [userName, setUserName] = useState("");
   const [comment, setComment] = useState("");
-  const [comments, setComments] = useState<{ comment: string; name: string }[]>([]);
+  const [comments, setComments] = useState<{ comment: string; name: string }[]>(
+    []
+  );
   const [articleFromFire, setArticleFromFire] = useState<
     | {
         title: string;
@@ -30,19 +33,49 @@ const Article: React.FC = () => {
       .get()
       .then((snap) =>
         snap.docs
-          .filter((doc) => doc.data().title !== articleNameFromUser)
+          .filter(
+            (doc) => doc.data().title.toLowerCase() === articleNameFromUser
+          )
           .forEach((docu: any) => {
+            setArticleId(docu.id);
             setArticleFromFire(docu.data());
-            docu.collection("comments")
+
+            db.collection("articles")
+              .doc(docu.id)
+              .collection("comments")
               .get()
-              .then((snap: any) =>
+              .then((snap) =>
                 snap.docs.forEach((doc: any) =>
-                  setComments((prev: any) => [...prev, doc.data()])
+                  setComments((prev: any) => [
+                    ...prev,
+                    doc.data(),
+                  ])
                 )
-              );
+              )
+              .finally(() => setCommentStatus(true));
           })
       );
   }, []);
+
+  const renderComments = () => {
+    if (commentStatus === true) {
+      return comments?.map((com) => (
+        <Comment key={Math.random()} comment={`${com.name}: ${com.comment}`} />
+      ));
+    } else {
+      return (
+        <h5
+          style={{
+            marginLeft: "3rem",
+            marginTop: ".5rem",
+            color: "orangered",
+          }}
+        >
+          No comments up till Now !
+        </h5>
+      );
+    }
+  };
 
   // Handle Submit of Comment
   const handleSubmitComment = (e: any): void => {
@@ -51,7 +84,14 @@ const Article: React.FC = () => {
     if (userName === "" || comment.length < 5) {
       alert("Please, try to fill the inputs with enough Text");
     } else {
-      console.log(articleFromFire?.category);
+      db.collection("articles")
+        .doc(articleId)
+        .collection("comments")
+        .add({ name: userName, comment: comment })
+        .catch((err) => alert(err.message));
+
+      setComment("");
+      setUserName("");
     }
   };
 
@@ -117,11 +157,7 @@ const Article: React.FC = () => {
             {/* Comments of People */}
             <div className="container comments__container">
               <h4>Comments</h4>
-              {console.log(comments)}
-              {comments.map((com) => (
-                <Comment comment={`${com.name}: ${com.comment}`} />
-              ))}
-              {comments.length <= 0 && <h5>No Comment up till Now !</h5>}
+              {commentStatus && renderComments()}
             </div>
           </div>
         </div>

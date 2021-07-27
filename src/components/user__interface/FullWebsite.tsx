@@ -1,16 +1,13 @@
 import React from "react";
-import Header from "./Header";
 import Navbar from "./Navbar";
-import Section from "./Section";
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import "./Main.css";
 import Footer from "./Footer";
 import Article from "./Article";
-import Login from "../authentification/Login";
-import Signup from "../authentification/Signup";
 import Home from "./Home";
+import ErrorPage from "./ErrorPage";
 
 export const data = [
   {
@@ -39,15 +36,11 @@ const FullWebsite: React.FC = () => {
   return (
     <div className="fullWebsite">
       <Router>
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
         <Route path="/" component={Home} exact />
+        <Route path="/:randomWord" component={ErrorPage} exact />
         <Route path="/articles" component={Home} exact />
         <Route path="/articles/:articleName">
-          <Navbar
-            image="https://images.pexels.com/photos/4868826/pexels-photo-4868826.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-            username="Zakaria"
-          />
+          <Navbar />
           <Article /> 
           {/* Footer */}
           <Footer />
