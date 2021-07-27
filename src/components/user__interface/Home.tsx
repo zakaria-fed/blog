@@ -7,13 +7,6 @@ import Section from "./Section";
 import { db } from "../../firebase";
 import { Input } from "@material-ui/core";
 
-interface articleNameInter {
-  data: {
-    category: string;
-  };
-  id: string;
-}
-
 export interface articleInter {
   title: string;
   para: string;
@@ -23,40 +16,28 @@ export interface articleInter {
 
 const Home: React.FC = () => {
   const [searchText, setSearchText] = useState("");
-  const [articlesNameData, setArticlesNameData] = useState<articleNameInter[]>(
-    []
-  );
   const [articles, setArticles] = useState<articleInter[]>([]);
-
-  // For the Firestore to fetch Articles Names Data
-  useEffect(() => {
-    db.collection("articles").onSnapshot((snap) =>
-      snap.docs.forEach((doc) =>
-        setArticlesNameData((prev: any) => [
-          ...prev,
-          { data: doc.data(), id: doc.id },
-        ])
-      )
-    );
-  }, []);
 
   // For the Firestore to fetch Articles themselves Data
   useEffect(() => {
     db.collection("articles")
+      .orderBy("category", "asc")
       .get()
-      .then((snap) =>
-        snap.docs.forEach((doc) =>
-          doc.ref
-            .collection("articles")
-            .get()
-            .then((snap) =>
-              snap.docs.forEach((doc) => {
-                setArticles((prev: any) => [...prev, doc.data()]);
-              })
-            )
+      .then((snap: any) =>
+        snap.docs.forEach((doc: any) =>
+          setArticles((prev: articleInter[]) => [...prev, doc.data()])
         )
       );
   }, []);
+
+  // Sort Articles :
+  const sortArticles = (articles: articleInter[]) => {
+    for (let i = 0; i < articles.length; i++) {
+      if ((i = 0)) {
+        let cat = articles[0].category;
+      }
+    }
+  };
 
   return (
     <div className="fullWebsite">
@@ -76,17 +57,13 @@ const Home: React.FC = () => {
             onChange={(e: any) => setSearchText(e.target.value)}
           />
         </form> */}
-        {articlesNameData.length > 0 &&
-          articles.length > 2 &&
-          articlesNameData.map((articleName) => {
-            return (
-              <Section
-                key={Math.random()}
-                title={articleName.data.category}
-                articles={articles}
-              />
-            );
-          })}{" "}
+        {articles.length > 0 && (
+          <Section
+            key={Math.random()}
+            title={articles[0].category}
+            articles={articles}
+          />
+        )}
       </main>
       {/* Footer */}
       <Footer />

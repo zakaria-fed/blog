@@ -29,6 +29,7 @@ const Section: React.FC<{ title: string; articles: interfaceArticles[] }> = ({
 
   useEffect(() => {
     renderArticles();
+    console.log(articles)
   }, []);
 
   return (
@@ -40,8 +41,8 @@ const Section: React.FC<{ title: string; articles: interfaceArticles[] }> = ({
         </div>
         {/* Fetch Articles data from Firebase */}
         <div className="section__articles">
-          {articlesFinal.length > 0 &&
-            articlesFinal.map((article) => (
+          {articles.length > 0 &&
+            articles.map((article) => (
               <ArticleCard
                 key={Math.random()}
                 title={article.title}
