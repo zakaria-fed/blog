@@ -8,7 +8,7 @@ const Navbar: React.FC = (): JSX.Element => {
   return (
     <div className="navbar">
       <div className="navbar__logo">
-        <h4>Blog App Made with REACT Library</h4>
+        <h4>Blog REACT App with Firebase</h4>
         <Link to="/">
           <Avatar src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png" />
         </Link>
